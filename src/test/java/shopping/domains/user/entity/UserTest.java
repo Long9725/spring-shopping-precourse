@@ -3,8 +3,18 @@ package shopping.domains.user.entity;
 import lombok.NonNull;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
+import org.junit.jupiter.params.ParameterizedTest;
+import org.junit.jupiter.params.provider.Arguments;
+import org.junit.jupiter.params.provider.MethodSource;
+import shopping.domains.product.entity.Image;
+import shopping.domains.product.entity.Name;
+import shopping.domains.product.entity.Price;
+import shopping.domains.product.entity.Product;
+
+import java.util.stream.Stream;
 
 import static org.assertj.core.api.Assertions.*;
+import static shopping.domains.product.test.fixture.ProductTestFixture.*;
 import static shopping.domains.user.test.fixture.EmailTestFixture.EMAILS;
 import static shopping.domains.user.test.fixture.PasswordTestFixture.ENCRYPTED_PASSWORDS;
 import static shopping.domains.user.test.fixture.PasswordTestFixture.RAW_PASSWORDS;
@@ -90,5 +100,29 @@ class UserTest {
 
         // when & then
         assertThatIllegalArgumentException().isThrownBy(() -> user.signIn(rawPassword, signInStrategy, matchPasswordStrategy, token));
+    }
+
+    @ParameterizedTest
+    @DisplayName("상품 생성자 NPE 테스트")
+    @MethodSource("constructorNullParameters")
+    void constructorNPETest(
+            final Email email,
+            final EncryptedPassword encryptedPassword
+    ) {
+        assertThatNullPointerException().isThrownBy(() -> User.builder()
+                .email(email)
+                .encryptedPassword(encryptedPassword)
+                .build());
+    }
+
+    private static Stream<Arguments> constructorNullParameters() {
+        // given
+        final Email email = new Email(EMAILS.get(0));
+        final EncryptedPassword encryptedPassword = new EncryptedPassword(ENCRYPTED_PASSWORDS.get(0));
+
+        return Stream.of(
+                Arguments.of(null, encryptedPassword),
+                Arguments.of(email, null)
+        );
     }
 }

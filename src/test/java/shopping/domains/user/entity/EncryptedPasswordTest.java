@@ -2,6 +2,7 @@ package shopping.domains.user.entity;
 
 import lombok.NonNull;
 import org.junit.jupiter.api.DisplayName;
+import org.junit.jupiter.api.Test;
 import org.junit.jupiter.params.ParameterizedTest;
 import org.junit.jupiter.params.provider.Arguments;
 import org.junit.jupiter.params.provider.MethodSource;
@@ -9,6 +10,7 @@ import org.junit.jupiter.params.provider.MethodSource;
 import java.util.stream.Stream;
 
 import static org.assertj.core.api.Assertions.assertThatIllegalArgumentException;
+import static org.assertj.core.api.Assertions.assertThatNullPointerException;
 import static shopping.domains.user.test.fixture.PasswordTestFixture.RAW_PASSWORDS;
 
 class EncryptedPasswordTest {
@@ -23,4 +25,11 @@ class EncryptedPasswordTest {
         return RAW_PASSWORDS.stream()
                 .map(Arguments::of);
     }
+
+    @Test
+    @DisplayName("값이 null인 경우 NPE를 발생시킨다.")
+    void constructorNPETest() {
+        assertThatNullPointerException().isThrownBy(() -> new EncryptedPassword(null));
+    }
+
 }

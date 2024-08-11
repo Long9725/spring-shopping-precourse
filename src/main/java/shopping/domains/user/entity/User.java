@@ -1,5 +1,6 @@
 package shopping.domains.user.entity;
 
+import lombok.Builder;
 import lombok.NonNull;
 
 public class User {
@@ -7,6 +8,7 @@ public class User {
 
     private EncryptedPassword encryptedPassword;
 
+    @Builder(toBuilder = true)
     public User(
             @NonNull final Email email,
             @NonNull final EncryptedPassword encryptedPassword
