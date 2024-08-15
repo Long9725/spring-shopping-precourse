@@ -11,7 +11,7 @@ import java.util.stream.Stream;
 
 import static org.assertj.core.api.Assertions.assertThatIllegalArgumentException;
 import static org.assertj.core.api.Assertions.assertThatNullPointerException;
-import static shopping.domains.user.test.fixture.PasswordTestFixture.RAW_PASSWORDS;
+import static shopping.domains.user.test.fixture.UserTestFixture.RAW_PASSWORDS;
 
 class EncryptedPasswordTest {
     @ParameterizedTest

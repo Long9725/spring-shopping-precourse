@@ -8,15 +8,15 @@ import java.util.regex.Pattern;
 
 @EqualsAndHashCode
 @ToString
-public class Email {
-    private static final Pattern PATTERN = Pattern.compile("^[A-Za-z0-9._%+-]+@[A-Za-z0-9.-]+\\.[A-Za-z]{2,6}$");
+public class RawEmail {
+    public static final Pattern PATTERN = Pattern.compile("^[A-Za-z0-9._%+-]+@[A-Za-z0-9.-]+\\.[A-Za-z]{2,6}$");
 
-    private String email;
+    private String value;
 
-    public Email(@NonNull final String email) {
-        validate(email);
+    public RawEmail(@NonNull final String value) {
+        validate(value);
 
-        this.email = email;
+        this.value = value;
     }
 
     private void validate(@NonNull final String email) {

@@ -1,5 +1,10 @@
 package shopping.domains.product.test.fixture;
 
+import shopping.domains.product.entity.Image;
+import shopping.domains.product.entity.Name;
+import shopping.domains.product.entity.Price;
+import shopping.domains.product.entity.Product;
+
 import java.util.List;
 
 public class ProductTestFixture {
@@ -51,4 +56,10 @@ public class ProductTestFixture {
     public static final List<Long> INVALID_PRICES = List.of(
             -1L
     );
+
+    public static final Product PRODUCT = Product.builder()
+            .name(new Name("name"))
+            .price(new Price(0L))
+            .image(new Image("https://example.com/image.jpg"))
+            .build();
 }

@@ -1,8 +1,10 @@
 package shopping.domains.user.entity;
 
+import lombok.Getter;
 import lombok.NonNull;
 import shopping.domains.user.utils.ValidateUtils;
 
+@Getter
 public class EncryptedPassword {
     private String value;
 

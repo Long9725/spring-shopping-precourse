@@ -1,0 +1,8 @@
+spring:
+  application:
+    name: spring-shopping
+
+encrypt:
+  aes:
+    secret: ${ENCRYPT_AES_SECRET}
+    salt: ${ENCRYPT_AES_SALT}

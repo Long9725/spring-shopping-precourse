@@ -1,3 +1,20 @@
+import java.util.Properties
+
+// .env 파일을 읽어와 환경 변수로 설정하는 함수
+fun loadEnvVariables() {
+    val envFile = file(".env")
+    if (envFile.exists()) {
+        val props = Properties()
+        envFile.inputStream().use { props.load(it) }
+        props.forEach { key, value ->
+            System.setProperty(key as String, value as String)
+        }
+    }
+}
+
+// 프로젝트가 실행될 때 .env 파일을 로드하도록 설정
+loadEnvVariables()
+
 plugins {
     id("org.springframework.boot") version "3.3.1"
     id("io.spring.dependency-management") version "1.1.5"
@@ -25,6 +42,7 @@ dependencies {
     implementation("org.springframework.boot:spring-boot-starter-thymeleaf")
     implementation("org.springframework.boot:spring-boot-starter-validation")
     implementation("org.springframework.boot:spring-boot-starter-web")
+    implementation("org.springframework.boot:spring-boot-starter-security")
     implementation("com.fasterxml.jackson.module:jackson-module-kotlin")
     implementation("org.flywaydb:flyway-core")
     implementation("org.flywaydb:flyway-mysql")
@@ -42,6 +60,19 @@ dependencies {
 kotlin {
     compilerOptions {
         freeCompilerArgs.addAll("-Xjsr305=strict")
+    }
+}
+
+tasks.withType<org.springframework.boot.gradle.tasks.run.BootRun> {
+    doFirst {
+        val envFile = file(".env")
+        if (envFile.exists()) {
+            val props = Properties()
+            envFile.inputStream().use { props.load(it) }
+            props.forEach { key, value ->
+                environment(key.toString(), value.toString()) // 환경 변수를 Gradle의 환경에 설정
+            }
+        }
     }
 }
 

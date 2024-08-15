@@ -10,15 +10,15 @@ import org.junit.jupiter.params.provider.MethodSource;
 import java.util.stream.Stream;
 
 import static org.assertj.core.api.Assertions.*;
-import static shopping.domains.user.test.fixture.EmailTestFixture.EMAILS;
-import static shopping.domains.user.test.fixture.EmailTestFixture.INVALID_EMAILS;
+import static shopping.domains.user.test.fixture.UserTestFixture.EMAILS;
+import static shopping.domains.user.test.fixture.UserTestFixture.INVALID_EMAILS;
 
 class EmailTest {
     @ParameterizedTest
     @DisplayName("이메일은 형식을 지켜야 한다.")
     @MethodSource("constructorParameters")
     void constructorTest(@NonNull final String email) {
-        assertThatNoException().isThrownBy(() -> new Email(email));
+        assertThatNoException().isThrownBy(() -> new RawEmail(email));
     }
 
     private static Stream<Arguments> constructorParameters() {
@@ -29,14 +29,14 @@ class EmailTest {
     @Test
     @DisplayName("이메일 값이 null인 경우 NPE를 발생시킨다.")
     void constructorNPETest() {
-        assertThatNullPointerException().isThrownBy(() -> new Email(null));
+        assertThatNullPointerException().isThrownBy(() -> new RawEmail(null));
     }
 
     @ParameterizedTest
     @DisplayName("이메일 값이 잘못된 경우 예외를 발생시킨다.")
     @MethodSource("constructorInvalidParameters")
     void constructorExceptionTest(@NonNull final String email) {
-        assertThatIllegalArgumentException().isThrownBy(() -> new Email(email));
+        assertThatIllegalArgumentException().isThrownBy(() -> new RawEmail(email));
     }
 
     private static Stream<Arguments> constructorInvalidParameters() {
@@ -52,10 +52,10 @@ class EmailTest {
             @NonNull final String right
     ) {
         // given
-        final Email expected = new Email(left);
+        final RawEmail expected = new RawEmail(left);
 
         // when
-        final Email actual = new Email(right);
+        final RawEmail actual = new RawEmail(right);
 
         // then
         assertThat(actual).isEqualTo(expected);
