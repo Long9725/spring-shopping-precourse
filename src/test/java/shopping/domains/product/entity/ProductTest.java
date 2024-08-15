@@ -1,12 +1,14 @@
 package shopping.domains.product.entity;
 
-import lombok.NonNull;
-import org.assertj.core.api.ThrowableAssert;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.params.ParameterizedTest;
 import org.junit.jupiter.params.provider.Arguments;
 import org.junit.jupiter.params.provider.MethodSource;
+import shopping.domains.product.domain.entity.Image;
+import shopping.domains.product.domain.entity.Name;
+import shopping.domains.product.domain.entity.Price;
+import shopping.domains.product.domain.entity.Product;
 
 import java.util.stream.Stream;
 

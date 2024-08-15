@@ -2,7 +2,15 @@ spring:
   application:
     name: spring-shopping
 
-encrypt:
-  aes:
-    secret: ${ENCRYPT_AES_SECRET}
-    salt: ${ENCRYPT_AES_SALT}
+security:
+  encrypt:
+    aes:
+      secret: ${ENCRYPT_AES_SECRET}
+      salt: ${ENCRYPT_AES_SALT}
+    token:
+      access:
+        secret: ${TOKEN_ACCESS_SECRET}
+        expire: ${TOKEN_ACCESS_EXPIRE}
+      refresh:
+        secret: ${TOKEN_REFRESH_SECRET}
+        expire: ${TOKEN_REFRESH_EXPIRE}

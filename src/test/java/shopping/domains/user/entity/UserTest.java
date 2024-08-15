@@ -6,6 +6,7 @@ import org.junit.jupiter.api.Test;
 import org.junit.jupiter.params.ParameterizedTest;
 import org.junit.jupiter.params.provider.Arguments;
 import org.junit.jupiter.params.provider.MethodSource;
+import shopping.domains.user.core.domain.entity.*;
 import shopping.domains.user.test.util.TestEncryptUtil;
 
 import java.util.stream.Stream;
@@ -33,7 +34,10 @@ class UserTest {
         final RawPassword rawPassword = new RawPassword(RAW_PASSWORDS.get(0));
         final EncryptedPassword encryptedPassword = new EncryptedPassword(ENCRYPTED_PASSWORDS.get(0));
         final User user = new User(encryptedEmail, encryptedPassword);
-        final AuthToken token = new AuthToken("authToken");
+        final AuthToken token = AuthToken.builder()
+                .accessToken("accessToken")
+                .refreshToken("refreshToken")
+                .build();
         final HashStrategy hashStrategy = new HashStrategy() {
             @Override
             public @NonNull String encrypt(@NonNull String origin) {
@@ -64,7 +68,10 @@ class UserTest {
         final RawPassword rawPassword = new RawPassword(RAW_PASSWORDS.get(0));
         final EncryptedPassword encryptedPassword = new EncryptedPassword(ENCRYPTED_PASSWORDS.get(0));
         final User user = new User(encryptedEmail, encryptedPassword);
-        final AuthToken token = new AuthToken("authToken");
+        final AuthToken token = AuthToken.builder()
+                .accessToken("accessToken")
+                .refreshToken("refreshToken")
+                .build();
         final HashStrategy hashStrategy = new HashStrategy() {
             @Override
             public @NonNull String encrypt(@NonNull String origin) {

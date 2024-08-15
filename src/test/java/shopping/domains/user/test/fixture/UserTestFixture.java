@@ -1,14 +1,14 @@
 package shopping.domains.user.test.fixture;
 
-import shopping.domains.user.entity.EncryptedEmail;
-import shopping.domains.user.entity.EncryptedPassword;
-import shopping.domains.user.entity.User;
+import shopping.domains.user.core.domain.entity.EncryptedEmail;
+import shopping.domains.user.core.domain.entity.EncryptedPassword;
+import shopping.domains.user.core.domain.entity.User;
 import shopping.domains.user.test.util.TestEncryptUtil;
 
 import java.util.List;
 
-import static shopping.domains.user.utils.ValidateUtils.MAX_RAW_PASSWORD_LENGTH;
-import static shopping.domains.user.utils.ValidateUtils.MIN_RAW_PASSWORD_LENGTH;
+import static shopping.domains.user.core.domain.entity.RawPassword.MAX_RAW_PASSWORD_LENGTH;
+import static shopping.domains.user.core.domain.entity.RawPassword.MIN_RAW_PASSWORD_LENGTH;
 
 public class UserTestFixture {
     public static final List<String> EMAILS = List.of(

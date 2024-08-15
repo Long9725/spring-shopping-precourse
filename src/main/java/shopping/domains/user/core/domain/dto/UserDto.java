@@ -1,0 +1,31 @@
+package shopping.domains.user.core.domain.dto;
+
+import lombok.*;
+import shopping.domains.common.core.domain.dto.BaseDto;
+
+import java.time.LocalDateTime;
+import java.util.UUID;
+
+@Getter
+@EqualsAndHashCode(callSuper = true)
+@ToString
+public class UserDto extends BaseDto {
+
+    private final String encryptedEmail;
+
+    private final String encryptedPassword;
+
+    @Builder(toBuilder = true)
+    public UserDto(
+            final UUID id,
+            final LocalDateTime createdAt,
+            final LocalDateTime updatedAt,
+            final LocalDateTime deletedAt,
+            final String encryptedEmail,
+            final String encryptedPassword
+    ) {
+        super(id, createdAt, updatedAt, deletedAt);
+        this.encryptedEmail = encryptedEmail;
+        this.encryptedPassword = encryptedPassword;
+    }
+}

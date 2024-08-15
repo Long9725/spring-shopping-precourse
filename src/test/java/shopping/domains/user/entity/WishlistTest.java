@@ -5,7 +5,9 @@ import org.junit.jupiter.api.Test;
 import org.junit.jupiter.params.ParameterizedTest;
 import org.junit.jupiter.params.provider.Arguments;
 import org.junit.jupiter.params.provider.MethodSource;
-import shopping.domains.product.entity.Product;
+import shopping.domains.product.domain.entity.Product;
+import shopping.domains.user.core.domain.entity.User;
+import shopping.domains.user.core.domain.entity.Wishlist;
 
 import java.util.stream.Stream;
 

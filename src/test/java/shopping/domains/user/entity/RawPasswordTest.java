@@ -6,11 +6,11 @@ import org.junit.jupiter.api.Test;
 import org.junit.jupiter.params.ParameterizedTest;
 import org.junit.jupiter.params.provider.Arguments;
 import org.junit.jupiter.params.provider.MethodSource;
+import shopping.domains.user.core.domain.entity.RawPassword;
 
 import java.util.stream.Stream;
 
-import static org.assertj.core.api.Assertions.assertThatNoException;
-import static org.assertj.core.api.Assertions.assertThatNullPointerException;
+import static org.assertj.core.api.Assertions.*;
 import static shopping.domains.user.test.fixture.UserTestFixture.INVALID_RAW_PASSWORDS;
 import static shopping.domains.user.test.fixture.UserTestFixture.RAW_PASSWORDS;
 
@@ -31,7 +31,7 @@ class RawPasswordTest {
     @DisplayName("비밀번호는 비밀번호 형식이 아닐시 예외가 발생한다.")
     @MethodSource("invalidRawPasswordParameters")
     void rawPasswordInvalidConstructorTest(@NonNull final String rawPassword) {
-        assertThatNoException().isThrownBy(() -> new RawPassword(rawPassword));
+        assertThatIllegalArgumentException().isThrownBy(() -> new RawPassword(rawPassword));
     }
 
     private static Stream<Arguments> invalidRawPasswordParameters() {
