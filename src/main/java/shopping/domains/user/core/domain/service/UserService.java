@@ -11,8 +11,6 @@ import shopping.domains.user.core.domain.command.SignUpCommand;
 import shopping.domains.user.core.domain.dto.TokenDto;
 import shopping.domains.user.core.domain.dto.UserDto;
 import shopping.domains.user.core.domain.entity.*;
-import shopping.domains.user.core.domain.mapper.TokenMapper;
-import shopping.domains.user.core.domain.mapper.UserMapper;
 import shopping.domains.user.core.in.UserInAdapter;
 import shopping.domains.user.core.out.TokenOutAdapter;
 import shopping.domains.user.core.out.UserOutAdapter;
@@ -23,10 +21,6 @@ public class UserService implements UserInAdapter {
     private final UserOutAdapter userOutAdapter;
 
     private final TokenOutAdapter tokenOutAdapter;
-
-    private final UserMapper userMapper;
-
-    private final TokenMapper tokenMapper;
 
     private final EncryptStrategy encryptStrategy;
 
@@ -39,8 +33,6 @@ public class UserService implements UserInAdapter {
     public UserService(
             @NonNull final UserOutAdapter userOutAdapter,
             @NonNull final TokenOutAdapter tokenOutAdapter,
-            @NonNull final UserMapper userMapper,
-            @NonNull final TokenMapper tokenMapper,
             @NonNull final EncryptStrategy encryptStrategy,
             @NonNull final HashStrategy hashStrategy,
             @Qualifier("accessTokenGenerator") @NonNull final TokenGenerator accessTokenGenerator,
@@ -48,8 +40,6 @@ public class UserService implements UserInAdapter {
     ) {
         this.userOutAdapter = userOutAdapter;
         this.tokenOutAdapter = tokenOutAdapter;
-        this.userMapper = userMapper;
-        this.tokenMapper = tokenMapper;
         this.encryptStrategy = encryptStrategy;
         this.hashStrategy = hashStrategy;
         this.accessTokenGenerator = accessTokenGenerator;
@@ -68,10 +58,10 @@ public class UserService implements UserInAdapter {
                 .hashStrategy(hashStrategy)
                 .build();
         final User user = User.builder()
-                .encryptedEmail(encryptedEmail)
-                .encryptedPassword(encryptedPassword)
+                .email(encryptedEmail)
+                .password(encryptedPassword)
                 .build();
-        final UserDto savedUserDto = userOutAdapter.save(userMapper.entityToDto(user));
+        final UserDto savedUserDto = userOutAdapter.save(user.toDto());
         return saveToken(savedUserDto, user, rawPassword);
     }
 
@@ -79,7 +69,7 @@ public class UserService implements UserInAdapter {
     public @NonNull TokenDto signIn(@NonNull final SignInCommand signInCommand) {
         final UserDto userDto = userOutAdapter.findUser(encryptStrategy.encrypt(signInCommand.rawEmail()))
                 .orElseThrow(() -> new ResourceNotFoundException(CommonErrorCode.NOT_EXIST));
-        final User user = UserMapper.INSTANCE.dtoToEntity(userDto);
+        final User user = new User(userDto);
         return saveToken(userDto, user, new RawPassword(signInCommand.rawPassword()));
     }
 
@@ -94,6 +84,6 @@ public class UserService implements UserInAdapter {
                 .refreshToken(refreshTokenGenerator.createToken(userDto.getId()))
                 .build();
         final AuthToken validAuthToken = user.signIn(rawPassword, hashStrategy, authToken);
-        return tokenOutAdapter.save(tokenMapper.entityToDto(validAuthToken));
+        return tokenOutAdapter.save(validAuthToken.toDto());
     }
 }

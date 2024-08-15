@@ -1,20 +1,40 @@
 package shopping.domains.user.core.domain.entity;
 
-import lombok.Builder;
-import lombok.NonNull;
+import jakarta.persistence.Embeddable;
+import lombok.*;
+import shopping.domains.user.core.domain.dto.UserDto;
 
+@Embeddable
+@NoArgsConstructor(access = AccessLevel.PROTECTED)
+@EqualsAndHashCode
+@ToString
 public class User {
-    private EncryptedEmail encryptedEmail;
+    private EncryptedEmail email;
 
-    private EncryptedPassword encryptedPassword;
+    private EncryptedPassword password;
 
     @Builder(toBuilder = true)
     public User(
-            @NonNull final EncryptedEmail encryptedEmail,
-            @NonNull final EncryptedPassword encryptedPassword
+            @NonNull final EncryptedEmail email,
+            @NonNull final EncryptedPassword password
     ) {
-        this.encryptedEmail = encryptedEmail;
-        this.encryptedPassword = encryptedPassword;
+        this.email = email;
+        this.password = password;
+    }
+
+    public User(@NonNull final UserDto dto) {
+        this(
+                new EncryptedEmail(dto.getEncryptedEmail()),
+                new EncryptedPassword(dto.getEncryptedPassword())
+        );
+    }
+
+    @NonNull
+    public UserDto toDto() {
+        return UserDto.builder()
+                .encryptedEmail(email.getValue())
+                .encryptedPassword(password.getValue())
+                .build();
     }
 
     @NonNull
@@ -23,7 +43,7 @@ public class User {
             @NonNull final HashStrategy hashStrategy,
             @NonNull final AuthToken token
     ) {
-        if(hashStrategy.match(rawPassword.getValue(), encryptedPassword.getValue())) {
+        if (hashStrategy.match(rawPassword.getValue(), password.getValue())) {
             return token;
         }
         throw new IllegalArgumentException("올바르지 않은 이메일 또는 비밀번호 입니다.");

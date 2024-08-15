@@ -1,10 +1,11 @@
 package shopping.domains.user.core.domain.entity;
 
-import lombok.Builder;
-import lombok.EqualsAndHashCode;
-import lombok.NonNull;
-import lombok.ToString;
+import jakarta.persistence.Embeddable;
+import lombok.*;
 
+@Embeddable
+@Getter
+@NoArgsConstructor(access = AccessLevel.PROTECTED)
 @EqualsAndHashCode
 @ToString
 public class EncryptedEmail {

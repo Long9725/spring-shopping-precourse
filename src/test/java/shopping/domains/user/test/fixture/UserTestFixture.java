@@ -53,8 +53,8 @@ public class UserTestFixture {
         final String encryptedEmail = TestEncryptUtil.encrypt("Test@example.com");
         final String encryptedPassword = TestEncryptUtil.hash("Test@123");
         USER = User.builder()
-                .encryptedEmail(new EncryptedEmail(encryptedEmail))
-                .encryptedPassword(new EncryptedPassword(encryptedPassword))
+                .email(new EncryptedEmail(encryptedEmail))
+                .password(new EncryptedPassword(encryptedPassword))
                 .build();
     }
 }

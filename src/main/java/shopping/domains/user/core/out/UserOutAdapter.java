@@ -8,5 +8,5 @@ import java.util.Optional;
 public interface UserOutAdapter {
     @NonNull UserDto save(@NonNull final UserDto dto);
 
-    @NonNull Optional<UserDto> findUser(@NonNull final String encryptedEmail);
+    @NonNull Optional<UserDto> findUser(final String encryptedEmail);
 }

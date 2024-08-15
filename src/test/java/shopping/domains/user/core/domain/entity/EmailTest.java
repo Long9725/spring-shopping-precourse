@@ -1,4 +1,4 @@
-package shopping.domains.user.entity;
+package shopping.domains.user.core.domain.entity;
 
 import lombok.NonNull;
 import org.junit.jupiter.api.DisplayName;

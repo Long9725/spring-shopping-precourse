@@ -1,10 +1,13 @@
 package shopping.domains.user.core.domain.entity;
 
-import lombok.Builder;
-import lombok.Getter;
-import lombok.NonNull;
+import jakarta.persistence.Embeddable;
+import lombok.*;
 
+@Embeddable
 @Getter
+@NoArgsConstructor(access = AccessLevel.PROTECTED)
+@EqualsAndHashCode
+@ToString
 public class EncryptedPassword {
     private String value;
 

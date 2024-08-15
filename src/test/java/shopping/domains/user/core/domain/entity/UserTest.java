@@ -1,4 +1,4 @@
-package shopping.domains.user.entity;
+package shopping.domains.user.core.domain.entity;
 
 import lombok.NonNull;
 import org.junit.jupiter.api.DisplayName;
@@ -6,6 +6,7 @@ import org.junit.jupiter.api.Test;
 import org.junit.jupiter.params.ParameterizedTest;
 import org.junit.jupiter.params.provider.Arguments;
 import org.junit.jupiter.params.provider.MethodSource;
+import shopping.domains.user.core.domain.dto.UserDto;
 import shopping.domains.user.core.domain.entity.*;
 import shopping.domains.user.test.util.TestEncryptUtil;
 
@@ -60,6 +61,60 @@ class UserTest {
         assertThat(actual).isNotNull();
     }
 
+    @ParameterizedTest
+    @DisplayName("회원 생성자 NPE 테스트")
+    @MethodSource("constructorNullParameters")
+    void constructorNPETest(
+            final EncryptedEmail encryptedEmail,
+            final EncryptedPassword encryptedPassword
+    ) {
+        assertThatNullPointerException().isThrownBy(() -> User.builder()
+                .email(encryptedEmail)
+                .password(encryptedPassword)
+                .build());
+    }
+
+    private static Stream<Arguments> constructorNullParameters() {
+        // given
+        final EncryptedEmail encryptedEmail = new EncryptedEmail(TestEncryptUtil.encrypt(EMAILS.get(0)));
+        final EncryptedPassword encryptedPassword = new EncryptedPassword(ENCRYPTED_PASSWORDS.get(0));
+
+        return Stream.of(
+                Arguments.of(null, encryptedPassword),
+                Arguments.of(encryptedEmail, null)
+        );
+    }
+
+    @Test
+    @DisplayName("Dto 생성자 테스트")
+    void dtoConstructorTest() {
+        // given
+        final UserDto dto = UserDto.builder()
+                .encryptedEmail("encryptedEmail")
+                .encryptedPassword("encryptedPassword")
+                .build();
+
+        // when & then
+        assertThatNoException().isThrownBy(() -> new User(dto));
+    }
+
+    @Test
+    @DisplayName("toDto 테스트")
+    void toDtoTest() {
+        // given
+        final UserDto expected = UserDto.builder()
+                .encryptedEmail("encryptedEmail")
+                .encryptedPassword("encryptedPassword")
+                .build();
+        final User user = new User(expected);
+
+        // when
+        final UserDto actual = user.toDto();
+
+        // then
+        assertThat(actual).isEqualTo(expected);
+    }
+
     @Test
     @DisplayName("회원이 올바르지 않은 비밀번호를 보내면 예외가 발생한다.")
     void signInExceptionTest() {
@@ -89,29 +144,5 @@ class UserTest {
 
         // when & then
         assertThatIllegalArgumentException().isThrownBy(() -> user.signIn(rawPassword, hashStrategy, token));
-    }
-
-    @ParameterizedTest
-    @DisplayName("회원 생성자 NPE 테스트")
-    @MethodSource("constructorNullParameters")
-    void constructorNPETest(
-            final EncryptedEmail encryptedEmail,
-            final EncryptedPassword encryptedPassword
-    ) {
-        assertThatNullPointerException().isThrownBy(() -> User.builder()
-                .encryptedEmail(encryptedEmail)
-                .encryptedPassword(encryptedPassword)
-                .build());
-    }
-
-    private static Stream<Arguments> constructorNullParameters() {
-        // given
-        final EncryptedEmail encryptedEmail = new EncryptedEmail(TestEncryptUtil.encrypt(EMAILS.get(0)));
-        final EncryptedPassword encryptedPassword = new EncryptedPassword(ENCRYPTED_PASSWORDS.get(0));
-
-        return Stream.of(
-                Arguments.of(null, encryptedPassword),
-                Arguments.of(encryptedEmail, null)
-        );
     }
 }

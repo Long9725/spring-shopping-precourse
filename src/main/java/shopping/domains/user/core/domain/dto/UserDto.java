@@ -10,6 +10,7 @@ import java.util.UUID;
 @EqualsAndHashCode(callSuper = true)
 @ToString
 public class UserDto extends BaseDto {
+    private final UUID id;
 
     private final String encryptedEmail;
 
@@ -21,10 +22,12 @@ public class UserDto extends BaseDto {
             final LocalDateTime createdAt,
             final LocalDateTime updatedAt,
             final LocalDateTime deletedAt,
+            final Long version,
             final String encryptedEmail,
             final String encryptedPassword
     ) {
-        super(id, createdAt, updatedAt, deletedAt);
+        super(createdAt, updatedAt, deletedAt, version);
+        this.id = id;
         this.encryptedEmail = encryptedEmail;
         this.encryptedPassword = encryptedPassword;
     }
