@@ -1,9 +1,9 @@
 package shopping.domains.product.test.fixture;
 
-import shopping.domains.product.domain.entity.Image;
-import shopping.domains.product.domain.entity.Name;
-import shopping.domains.product.domain.entity.Price;
-import shopping.domains.product.domain.entity.Product;
+import shopping.domains.product.core.domain.entity.Image;
+import shopping.domains.product.core.domain.entity.Name;
+import shopping.domains.product.core.domain.entity.Price;
+import shopping.domains.product.core.domain.entity.Product;
 
 import java.util.List;
 

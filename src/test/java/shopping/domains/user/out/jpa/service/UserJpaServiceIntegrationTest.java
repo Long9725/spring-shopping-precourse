@@ -2,7 +2,6 @@ package shopping.domains.user.out.jpa.service;
 
 import lombok.NonNull;
 import org.junit.jupiter.api.DisplayName;
-import org.junit.jupiter.api.Test;
 import org.junit.jupiter.params.ParameterizedTest;
 import org.junit.jupiter.params.provider.Arguments;
 import org.junit.jupiter.params.provider.MethodSource;
@@ -11,9 +10,6 @@ import org.springframework.boot.test.autoconfigure.orm.jpa.DataJpaTest;
 import org.springframework.boot.test.autoconfigure.orm.jpa.TestEntityManager;
 import org.springframework.context.annotation.Import;
 import shopping.domains.user.core.domain.dto.UserDto;
-import shopping.domains.user.core.domain.entity.EncryptedEmail;
-import shopping.domains.user.core.domain.entity.EncryptedPassword;
-import shopping.domains.user.core.domain.entity.User;
 import shopping.domains.user.out.jpa.entity.JpaUser;
 import shopping.domains.user.out.jpa.repository.UserRepository;
 
@@ -27,7 +23,7 @@ import static shopping.test.util.JpaTestUtils.persistAndFlush;
 
 @DataJpaTest
 @Import(UserJpaService.class)
-class UserJpaServiceTest {
+class UserJpaServiceIntegrationTest {
     @Autowired
     private UserJpaService userJpaService;
 

@@ -1,8 +1,10 @@
-package shopping.domains.product.domain.entity;
+package shopping.domains.product.core.domain.entity;
 
 import lombok.EqualsAndHashCode;
+import lombok.Getter;
 import lombok.ToString;
 
+@Getter
 @EqualsAndHashCode
 @ToString
 public class Price {

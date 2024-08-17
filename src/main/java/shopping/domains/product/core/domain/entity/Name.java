@@ -1,11 +1,13 @@
-package shopping.domains.product.domain.entity;
+package shopping.domains.product.core.domain.entity;
 
 import lombok.EqualsAndHashCode;
+import lombok.Getter;
 import lombok.NonNull;
 import lombok.ToString;
 
 import java.util.regex.Pattern;
 
+@Getter
 @EqualsAndHashCode
 @ToString
 public class Name {

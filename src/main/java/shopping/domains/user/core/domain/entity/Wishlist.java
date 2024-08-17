@@ -2,7 +2,7 @@ package shopping.domains.user.core.domain.entity;
 
 import lombok.Builder;
 import lombok.NonNull;
-import shopping.domains.product.domain.entity.Product;
+import shopping.domains.product.core.domain.entity.Product;
 
 public class Wishlist {
     private User user;

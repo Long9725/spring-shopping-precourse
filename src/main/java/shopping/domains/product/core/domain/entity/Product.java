@@ -1,9 +1,10 @@
-package shopping.domains.product.domain.entity;
+package shopping.domains.product.core.domain.entity;
 
 import lombok.Builder;
 import lombok.EqualsAndHashCode;
 import lombok.NonNull;
 import lombok.ToString;
+import shopping.domains.product.core.domain.dto.ProductDto;
 
 @EqualsAndHashCode
 @ToString
@@ -23,5 +24,14 @@ public class Product {
         this.name = name;
         this.price = price;
         this.image = image;
+    }
+
+    @NonNull
+    public ProductDto toDto() {
+        return ProductDto.builder()
+                .name(name.getValue())
+                .price(price.getValue())
+                .imageUrl(image.getDownloadUrl())
+                .build();
     }
 }

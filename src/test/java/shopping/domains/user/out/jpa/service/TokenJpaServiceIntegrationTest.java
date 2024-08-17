@@ -20,7 +20,7 @@ import static org.assertj.core.api.Assertions.assertThat;
 
 @DataJpaTest
 @Import(TokenJpaService.class)
-class TokenJpaServiceTest {
+class TokenJpaServiceIntegrationTest {
     @Autowired
     private TokenJpaService tokenJpaService;
 
