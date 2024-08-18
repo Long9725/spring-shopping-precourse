@@ -2,7 +2,7 @@ package shopping.apps.shopping.api.user.docs;
 
 public class WishlistApiDocs {
     public static final class Create {
-        public static final String SUMMARY = "사용자 회원가입";
+        public static final String SUMMARY = "위시리스트 생성";
 
         public static final String DESCRIPTION = """
             
@@ -10,7 +10,7 @@ public class WishlistApiDocs {
     }
 
     public static final class Delete {
-        public static final String SUMMARY = "사용자 로그인";
+        public static final String SUMMARY = "위시리스트 삭제";
 
         public static final String DESCRIPTION = """
             
@@ -18,7 +18,7 @@ public class WishlistApiDocs {
     }
 
     public static final class GetAllInfo {
-        public static final String SUMMARY = "사용자 로그인";
+        public static final String SUMMARY = "사용자별 위시리스트 모든 목록 가져오기";
 
         public static final String DESCRIPTION = """
             
