@@ -13,7 +13,7 @@ import java.util.UUID;
 @EqualsAndHashCode(callSuper = true)
 @ToString(callSuper = true)
 public class ProductDto extends BaseDto {
-    private final UUID productId;
+    private final UUID id;
 
     private final String name;
 
@@ -23,7 +23,7 @@ public class ProductDto extends BaseDto {
 
     @Builder(toBuilder = true)
     public ProductDto(
-            final UUID productId,
+            final UUID id,
             final LocalDateTime createdAt,
             final LocalDateTime updatedAt,
             final LocalDateTime deletedAt,
@@ -33,7 +33,7 @@ public class ProductDto extends BaseDto {
             final String imageUrl
     ) {
         super(createdAt, updatedAt, deletedAt, version);
-        this.productId = productId;
+        this.id = id;
         this.name = name;
         this.price = price;
         this.imageUrl = imageUrl;

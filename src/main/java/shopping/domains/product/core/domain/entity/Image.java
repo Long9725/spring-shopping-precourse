@@ -1,13 +1,13 @@
 package shopping.domains.product.core.domain.entity;
 
-import lombok.EqualsAndHashCode;
-import lombok.Getter;
-import lombok.NonNull;
-import lombok.ToString;
+import jakarta.persistence.Embeddable;
+import lombok.*;
 
 import java.util.regex.Pattern;
 
+@Embeddable
 @Getter
+@NoArgsConstructor(access = AccessLevel.PROTECTED)
 @EqualsAndHashCode
 @ToString
 public class Image {

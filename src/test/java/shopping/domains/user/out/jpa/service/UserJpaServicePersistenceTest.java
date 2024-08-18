@@ -23,7 +23,7 @@ import static shopping.test.util.JpaTestUtils.persistAndFlush;
 
 @DataJpaTest
 @Import(UserJpaService.class)
-class UserJpaServiceIntegrationTest {
+class UserJpaServicePersistenceTest {
     @Autowired
     private UserJpaService userJpaService;
 

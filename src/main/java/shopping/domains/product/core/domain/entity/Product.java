@@ -1,11 +1,14 @@
 package shopping.domains.product.core.domain.entity;
 
-import lombok.Builder;
-import lombok.EqualsAndHashCode;
-import lombok.NonNull;
-import lombok.ToString;
+import jakarta.persistence.Embeddable;
+import lombok.*;
 import shopping.domains.product.core.domain.dto.ProductDto;
+import shopping.domains.user.core.domain.dto.UserDto;
+import shopping.domains.user.core.domain.entity.EncryptedEmail;
+import shopping.domains.user.core.domain.entity.EncryptedPassword;
 
+@Embeddable
+@NoArgsConstructor(access = AccessLevel.PROTECTED)
 @EqualsAndHashCode
 @ToString
 public class Product {
@@ -24,6 +27,14 @@ public class Product {
         this.name = name;
         this.price = price;
         this.image = image;
+    }
+
+    public Product(@NonNull final ProductDto dto) {
+        this(
+                new Name(dto.getName()),
+                new Price(dto.getPrice()),
+                new Image(dto.getImageUrl())
+        );
     }
 
     @NonNull

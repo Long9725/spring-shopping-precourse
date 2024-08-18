@@ -1,10 +1,11 @@
 package shopping.domains.product.core.domain.entity;
 
-import lombok.EqualsAndHashCode;
-import lombok.Getter;
-import lombok.ToString;
+import jakarta.persistence.Embeddable;
+import lombok.*;
 
+@Embeddable
 @Getter
+@NoArgsConstructor(access = AccessLevel.PROTECTED)
 @EqualsAndHashCode
 @ToString
 public class Price {
