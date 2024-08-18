@@ -1,7 +1,14 @@
 spring:
   application:
     name: spring-shopping
-
+  cloud:
+    openfeign:
+      client:
+        config:
+          default:
+            loggerLevel: HEADERS  # FULL, BASIC, HEADERS, NONE ? ?? ??
+          purgoMalumClient:
+            url: https://www.purgomalum.com/service
 security:
   encrypt:
     aes:

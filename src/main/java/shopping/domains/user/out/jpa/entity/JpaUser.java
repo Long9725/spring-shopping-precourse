@@ -25,8 +25,8 @@ public class JpaUser extends BaseJpaEntity {
 
     @Embedded
     @AttributeOverrides({
-            @AttributeOverride(name = "email.price", column = @Column(name = "email")),
-            @AttributeOverride(name = "password.price", column = @Column(name = "password"))
+            @AttributeOverride(name = "email.value", column = @Column(name = "email")),
+            @AttributeOverride(name = "password.value", column = @Column(name = "password"))
     })
     private User user;
 

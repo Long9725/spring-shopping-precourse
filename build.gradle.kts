@@ -27,6 +27,7 @@ group = "camp.nextstep.edu"
 version = "0.0.1-SNAPSHOT"
 val mapstructVersion = "1.4.2.Final"
 val lombokVersion = "1.18.34"
+val slf4jVersion = "1.7.36"
 
 java {
     toolchain {
@@ -67,14 +68,15 @@ dependencies {
     developmentOnly("org.springframework.boot:spring-boot-devtools")
 
     testImplementation("org.springframework.boot:spring-boot-starter-test")
+    testImplementation("org.springframework.cloud:spring-cloud-contract-wiremock")
     testImplementation("org.jetbrains.kotlin:kotlin-test-junit5")
     testRuntimeOnly("org.junit.platform:junit-platform-launcher")
-    testCompileOnly("org.projectlombok:lombok:1.18.24")
+    testCompileOnly("org.projectlombok:lombok:$lombokVersion")
 }
 
 dependencyManagement {
     imports {
-        mavenBom("org.springframework.cloud:spring-cloud-dependencies:2021.0.5")
+        mavenBom("org.springframework.cloud:spring-cloud-dependencies:2023.0.3")
     }
 }
 
