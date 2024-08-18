@@ -10,7 +10,7 @@ import shopping.domains.product.core.domain.entity.Product;
 import java.util.UUID;
 
 @Entity
-@Table(name = "users")
+@Table(name = "products")
 @SuperBuilder(toBuilder = true)
 @NoArgsConstructor(access = AccessLevel.PROTECTED)
 @AllArgsConstructor
