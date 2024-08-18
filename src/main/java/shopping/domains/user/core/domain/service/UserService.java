@@ -6,14 +6,14 @@ import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.stereotype.Service;
 import shopping.domains.common.core.domain.entity.ResourceNotFoundException;
 import shopping.domains.common.core.domain.enums.CommonErrorCode;
-import shopping.domains.user.core.domain.command.SignInCommand;
-import shopping.domains.user.core.domain.command.SignUpCommand;
+import shopping.domains.user.core.in.command.SignInCommand;
+import shopping.domains.user.core.in.command.SignUpCommand;
 import shopping.domains.user.core.domain.dto.TokenDto;
 import shopping.domains.user.core.domain.dto.UserDto;
 import shopping.domains.user.core.domain.entity.*;
-import shopping.domains.user.core.in.UserInAdapter;
-import shopping.domains.user.core.out.TokenOutAdapter;
-import shopping.domains.user.core.out.UserOutAdapter;
+import shopping.domains.user.core.in.adapter.UserInAdapter;
+import shopping.domains.user.core.out.adapter.TokenOutAdapter;
+import shopping.domains.user.core.out.adapter.UserOutAdapter;
 
 @Service
 @Slf4j

@@ -5,7 +5,7 @@ import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.stereotype.Service;
 import shopping.domains.product.core.domain.dto.ProductDto;
-import shopping.domains.product.core.out.ProductOutAdapter;
+import shopping.domains.product.core.out.adapter.ProductOutAdapter;
 import shopping.domains.product.out.jpa.entity.JpaProduct;
 import shopping.domains.product.out.jpa.repository.ProductRepository;
 

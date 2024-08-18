@@ -4,7 +4,7 @@ import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.lang.NonNull;
 import org.springframework.stereotype.Service;
-import shopping.domains.product.core.out.ProfanityFilterOutAdapter;
+import shopping.domains.product.core.out.adapter.ProfanityFilterOutAdapter;
 import shopping.domains.product.out.api.purgoMalum.client.PurgoMalumClient;
 
 @Service

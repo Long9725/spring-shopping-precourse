@@ -1,4 +1,4 @@
-package shopping.domains.user.core.domain.command;
+package shopping.domains.user.core.in.command;
 
 import java.util.UUID;
 

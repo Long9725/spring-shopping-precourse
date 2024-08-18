@@ -5,7 +5,7 @@ import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.stereotype.Service;
 import shopping.domains.user.core.domain.dto.TokenDto;
-import shopping.domains.user.core.out.TokenOutAdapter;
+import shopping.domains.user.core.out.adapter.TokenOutAdapter;
 import shopping.domains.user.out.jpa.entity.JpaAuthToken;
 import shopping.domains.user.out.jpa.repository.TokenRepository;
 

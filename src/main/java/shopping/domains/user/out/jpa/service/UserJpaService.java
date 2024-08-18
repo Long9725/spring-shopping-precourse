@@ -5,7 +5,7 @@ import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.stereotype.Service;
 import shopping.domains.user.core.domain.dto.UserDto;
-import shopping.domains.user.core.out.UserOutAdapter;
+import shopping.domains.user.core.out.adapter.UserOutAdapter;
 import shopping.domains.user.out.jpa.entity.JpaUser;
 import shopping.domains.user.out.jpa.repository.UserRepository;
 

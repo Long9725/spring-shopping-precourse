@@ -1,9 +1,8 @@
-package shopping.domains.product.core.service;
+package shopping.domains.product.core.domain.service;
 
 import lombok.NonNull;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
-import org.jetbrains.annotations.NotNull;
 import org.springframework.stereotype.Service;
 import shopping.domains.common.core.domain.entity.ClientIllegalArgumentException;
 import shopping.domains.common.core.domain.entity.ResourceNotFoundException;
@@ -16,8 +15,8 @@ import shopping.domains.product.core.domain.entity.Price;
 import shopping.domains.product.core.domain.entity.Product;
 import shopping.domains.product.core.in.adapter.ProductInAdapter;
 import shopping.domains.product.core.in.command.UpdateProductCommand;
-import shopping.domains.product.core.out.ProductOutAdapter;
-import shopping.domains.product.core.out.ProfanityFilterOutAdapter;
+import shopping.domains.product.core.out.adapter.ProductOutAdapter;
+import shopping.domains.product.core.out.adapter.ProfanityFilterOutAdapter;
 
 import java.util.List;
 import java.util.UUID;

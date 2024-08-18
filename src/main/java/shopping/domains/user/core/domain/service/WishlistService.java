@@ -3,19 +3,21 @@ package shopping.domains.user.core.domain.service;
 import lombok.NonNull;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
-import org.springframework.stereotype.Repository;
 import org.springframework.stereotype.Service;
 import shopping.domains.common.core.domain.entity.AlreadyExistResourceException;
 import shopping.domains.common.core.domain.entity.ResourceNotFoundException;
 import shopping.domains.common.core.domain.enums.CommonErrorCode;
 import shopping.domains.product.core.domain.dto.ProductDto;
-import shopping.domains.product.core.out.ProductOutAdapter;
-import shopping.domains.user.core.domain.command.CreateWishlistCommand;
+import shopping.domains.product.core.out.adapter.ProductOutAdapter;
+import shopping.domains.user.core.in.command.CreateWishlistCommand;
 import shopping.domains.user.core.domain.dto.UserDto;
 import shopping.domains.user.core.domain.dto.WishlistDto;
-import shopping.domains.user.core.in.WishlistInAdapter;
-import shopping.domains.user.core.out.UserOutAdapter;
-import shopping.domains.user.core.out.WishlistOutAdapter;
+import shopping.domains.user.core.in.adapter.WishlistInAdapter;
+import shopping.domains.user.core.out.adapter.UserOutAdapter;
+import shopping.domains.user.core.out.adapter.WishlistOutAdapter;
+
+import java.util.List;
+import java.util.UUID;
 
 @Service
 @RequiredArgsConstructor
@@ -42,5 +44,15 @@ public class WishlistService implements WishlistInAdapter {
                 .product(productDto)
                 .build();
         return wishlistOutAdapter.save(wishlistDto);
+    }
+
+    @Override
+    public void deleteWishlist(@NonNull final UUID wishlistId) {
+        wishlistOutAdapter.delete(wishlistId);
+    }
+
+    @Override
+    public @NonNull List<WishlistDto> getAllWishlist(@NonNull final UUID userId) {
+        return wishlistOutAdapter.findAll(userId);
     }
 }

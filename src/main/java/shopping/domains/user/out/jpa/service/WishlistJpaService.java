@@ -5,10 +5,11 @@ import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.stereotype.Service;
 import shopping.domains.user.core.domain.dto.WishlistDto;
-import shopping.domains.user.core.out.WishlistOutAdapter;
+import shopping.domains.user.core.out.adapter.WishlistOutAdapter;
 import shopping.domains.user.out.jpa.entity.JpaWishlist;
 import shopping.domains.user.out.jpa.repository.WishlistRepository;
 
+import java.util.List;
 import java.util.UUID;
 
 @Service
@@ -28,5 +29,18 @@ public class WishlistJpaService implements WishlistOutAdapter {
             @NonNull final UUID productId
     ) {
         return wishlistRepository.existsByUser_IdAndProduct_Id(userId, productId);
+    }
+
+    @Override
+    public void delete(@NonNull final UUID wishlistId) {
+        wishlistRepository.deleteById(wishlistId);
+    }
+
+    @Override
+    public List<WishlistDto> findAll(@NonNull final UUID userId) {
+        return wishlistRepository.findAllByUser_Id(userId)
+                .stream()
+                .map(JpaWishlist::toDto)
+                .toList();
     }
 }

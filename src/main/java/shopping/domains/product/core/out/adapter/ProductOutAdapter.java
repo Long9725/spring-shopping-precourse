@@ -1,4 +1,4 @@
-package shopping.domains.product.core.out;
+package shopping.domains.product.core.out.adapter;
 
 import lombok.NonNull;
 import shopping.domains.product.core.domain.dto.ProductDto;

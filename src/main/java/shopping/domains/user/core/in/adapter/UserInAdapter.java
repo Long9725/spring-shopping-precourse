@@ -1,8 +1,8 @@
-package shopping.domains.user.core.in;
+package shopping.domains.user.core.in.adapter;
 
 import lombok.NonNull;
-import shopping.domains.user.core.domain.command.SignInCommand;
-import shopping.domains.user.core.domain.command.SignUpCommand;
+import shopping.domains.user.core.in.command.SignInCommand;
+import shopping.domains.user.core.in.command.SignUpCommand;
 import shopping.domains.user.core.domain.dto.TokenDto;
 
 public interface UserInAdapter {

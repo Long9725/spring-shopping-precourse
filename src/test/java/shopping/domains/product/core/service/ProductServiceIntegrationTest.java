@@ -10,6 +10,7 @@ import org.springframework.boot.test.context.SpringBootTest;
 import org.springframework.cloud.contract.wiremock.AutoConfigureWireMock;
 import org.springframework.test.context.TestPropertySource;
 import shopping.domains.common.core.domain.entity.ClientIllegalArgumentException;
+import shopping.domains.product.core.domain.service.ProductService;
 import shopping.domains.product.core.in.command.CreateProductCommand;
 import shopping.domains.product.core.domain.dto.ProductDto;
 import shopping.domains.product.out.jpa.entity.JpaProduct;
