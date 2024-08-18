@@ -1,4 +1,4 @@
-package shopping.apps.shopping.security.bean;
+package shopping.apps.shopping.security.bean.encrypt;
 
 import lombok.NonNull;
 import lombok.RequiredArgsConstructor;

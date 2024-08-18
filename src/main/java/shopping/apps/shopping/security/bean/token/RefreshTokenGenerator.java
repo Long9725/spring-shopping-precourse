@@ -1,4 +1,4 @@
-package shopping.apps.shopping.security.bean;
+package shopping.apps.shopping.security.bean.token;
 
 import lombok.NonNull;
 import org.springframework.beans.factory.annotation.Value;
@@ -8,12 +8,13 @@ import shopping.domains.user.core.domain.entity.TokenGenerator;
 import java.util.UUID;
 
 @Component
-public class AccessTokenGenerator implements TokenGenerator {
-    @Value("${security.encrypt.token.access.secret}")
+public class RefreshTokenGenerator implements TokenGenerator {
+    @Value("${security.encrypt.token.refresh.secret}")
     private String secret;
 
-    @Value("${security.encrypt.token.access.expire}")
+    @Value("${security.encrypt.token.refresh.expire}")
     private String expire;
+
 
     @Override
     public @NonNull String createToken(@NonNull UUID uuid) {

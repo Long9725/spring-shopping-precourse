@@ -1,20 +1,25 @@
-package shopping.apps.shopping.security.bean;
+package shopping.apps.shopping.security.bean.token;
 
 import lombok.NonNull;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.stereotype.Component;
 import shopping.domains.user.core.domain.entity.TokenGenerator;
 
 import java.util.UUID;
 
-@Component
-public class RefreshTokenGenerator implements TokenGenerator {
-    @Value("${security.encrypt.token.refresh.secret}")
-    private String secret;
+public class AccessTokenGenerator implements TokenGenerator {
+    private final String secret;
 
-    @Value("${security.encrypt.token.refresh.expire}")
-    private String expire;
+    private final String expire;
 
+    public AccessTokenGenerator(
+            final String secret,
+            final String expire
+    ) {
+        this.secret = secret;
+        this.expire = expire;
+    }
 
     @Override
     public @NonNull String createToken(@NonNull UUID uuid) {

@@ -9,6 +9,11 @@ spring:
             loggerLevel: HEADERS  # FULL, BASIC, HEADERS, NONE ? ?? ??
           purgoMalumClient:
             url: https://www.purgomalum.com/service
+
+server:
+  servlet:
+    context-path: /api
+
 security:
   encrypt:
     aes:
