@@ -22,6 +22,7 @@ import java.util.UUID;
 
 @Slf4j
 public class AccessTokenAuthenticationFilter extends OncePerRequestFilter {
+    private static final AntPathMatcher pathMatcher = new AntPathMatcher();
     private static final String AUTHORIZATION_HEADER_KEY = "Authorization";
 
     private static final String TOKEN_PREFIX = "Bearer ";
@@ -50,7 +51,7 @@ public class AccessTokenAuthenticationFilter extends OncePerRequestFilter {
             throws ServletException, IOException {
         final String requestURI = request.getRequestURI().substring(ApiUrls.API_PREFIX.length());
 
-        if (accessTokenWhitelist.notContains(requestURI)) {
+        if (accessTokenWhitelist.noneMatch(requestURI, pathMatcher::match)) {
             setDetails(request, getTokenFromRequest(request));
         }
 

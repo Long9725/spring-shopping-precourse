@@ -11,9 +11,11 @@ public class RawPassword {
 
     public static final int MAX_RAW_PASSWORD_LENGTH = 20;
 
-    public static final Pattern RAW_PASSWORD_PATTERN = Pattern.compile("^(?=.*[a-z])(?=.*[A-Z])(?=.*\\d)(?=.*[@$!%*?&])[A-Za-z\\d@$!%*?&]{"
+    public static final String RAW_PASSWORD_REG_EXP = "^(?=.*[a-z])(?=.*[A-Z])(?=.*\\d)(?=.*[@$!%*?&])[A-Za-z\\d@$!%*?&]{"
             + MIN_RAW_PASSWORD_LENGTH + ","
-            + MAX_RAW_PASSWORD_LENGTH + "}$");
+            + MAX_RAW_PASSWORD_LENGTH + "}$";
+
+    public static final Pattern RAW_PASSWORD_PATTERN = Pattern.compile(RAW_PASSWORD_REG_EXP);
 
     private String value;
 

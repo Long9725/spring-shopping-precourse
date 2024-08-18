@@ -11,7 +11,9 @@ import java.util.regex.Pattern;
 @EqualsAndHashCode
 @ToString
 public class RawEmail {
-    public static final Pattern PATTERN = Pattern.compile("^[A-Za-z0-9._%+-]+@[A-Za-z0-9.-]+\\.[A-Za-z]{2,6}$");
+    public static final String REG_EXP = "^[A-Za-z0-9._%+-]+@[A-Za-z0-9.-]+\\.[A-Za-z]{2,6}$";
+
+    public static final Pattern PATTERN = Pattern.compile(REG_EXP);
 
     private String value;
 

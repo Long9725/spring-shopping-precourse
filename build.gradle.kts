@@ -62,8 +62,15 @@ dependencies {
     compileOnly("org.projectlombok:lombok:$lombokVersion")
     annotationProcessor("org.projectlombok:lombok:$lombokVersion")
 
+    // api docs
+    implementation("org.springdoc:springdoc-openapi-starter-webmvc-ui:2.0.2")
+
+    // database
     runtimeOnly("com.h2database:h2")
     runtimeOnly("com.mysql:mysql-connector-j")
+
+    // jwt
+    implementation("com.auth0:java-jwt:3.18.2")
 
     developmentOnly("org.springframework.boot:spring-boot-devtools")
 

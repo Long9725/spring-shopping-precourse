@@ -11,17 +11,10 @@ import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.security.crypto.encrypt.AesBytesEncryptor;
 import org.springframework.security.web.SecurityFilterChain;
 import org.springframework.security.web.authentication.UsernamePasswordAuthenticationFilter;
-import org.springframework.web.cors.CorsConfiguration;
-import org.springframework.web.cors.CorsConfigurationSource;
-import org.springframework.web.cors.UrlBasedCorsConfigurationSource;
 import shopping.apps.shopping.security.bean.token.AccessTokenAuthenticationFilter;
-import shopping.apps.shopping.security.bean.token.AccessTokenGenerator;
+import shopping.apps.shopping.security.bean.token.JwtTokenGenerator;
 import shopping.apps.shopping.security.bean.token.AccessTokenWhitelist;
 import shopping.domains.user.core.domain.entity.TokenGenerator;
-
-import java.util.ArrayList;
-import java.util.Arrays;
-import java.util.List;
 
 @Configuration
 public class SecurityConfig {
@@ -42,17 +35,25 @@ public class SecurityConfig {
     }
 
     @Bean
-    public AccessTokenGenerator accessTokenGenerator(
+    public JwtTokenGenerator accessTokenGenerator(
             @Value("${security.encrypt.token.access.secret}") final String secret,
             @Value("${security.encrypt.token.access.expire}") final String expire
     ) {
-        return new AccessTokenGenerator(secret, expire);
+        return new JwtTokenGenerator(secret, Long.parseLong(expire));
+    }
+
+    @Bean
+    public JwtTokenGenerator refreshTokenGenerator(
+            @Value("${security.encrypt.token.refresh.secret}") final String secret,
+            @Value("${security.encrypt.token.refresh.expire}") final String expire
+    ) {
+        return new JwtTokenGenerator(secret, Long.parseLong(expire));
     }
 
     @Bean
     public SecurityFilterChain filterChain(
             @NonNull final HttpSecurity httpSecurity,
-          @Qualifier("accessTokenGenerator") @NonNull final TokenGenerator tokenGenerator
+            @Qualifier("accessTokenGenerator") @NonNull final TokenGenerator tokenGenerator
     ) throws Exception {
         final AccessTokenWhitelist accessTokenWhitelist = AccessTokenWhitelist.getInstance();
 

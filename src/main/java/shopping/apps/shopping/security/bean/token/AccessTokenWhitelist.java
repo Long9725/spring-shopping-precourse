@@ -16,7 +16,6 @@ public class AccessTokenWhitelist {
                 SWAGGER_API_DOCS,
                 SWAGGER_UI,
                 SWAGGER_RESOURCES,
-                ACTUATOR,
                 USER_PREFIX + USER_LOGIN,
                 USER_PREFIX + USER_REGISTER
         );
@@ -33,6 +32,23 @@ public class AccessTokenWhitelist {
 
     public boolean notContains(@NonNull final String value) {
         return !contains(value);
+    }
+
+    public boolean match(
+            @NonNull final String value,
+            @NonNull final MatchStrategy matchStrategy
+    ) {
+        if(notContains(value)) {
+            return false;
+        }
+        return whitelists.stream().anyMatch(whitelist -> matchStrategy.match(whitelist, value));
+    }
+
+    public boolean noneMatch(
+            @NonNull final String value,
+            @NonNull final MatchStrategy matchStrategy
+    ) {
+       return !match(value, matchStrategy);
     }
 
     public String[] toArray() {

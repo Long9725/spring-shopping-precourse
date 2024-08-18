@@ -15,8 +15,6 @@ public class ApiUrls {
 
     public static final String SWAGGER_RESOURCES =   "/swagger-resources/**";
 
-    public static final String ACTUATOR =   "/actuator/**";
-
     public static final String USER_PREFIX = "/members";
 
     public static final String USER_REGISTER = "/register";

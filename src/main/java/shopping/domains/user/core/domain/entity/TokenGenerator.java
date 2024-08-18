@@ -5,6 +5,7 @@ import lombok.NonNull;
 import java.util.UUID;
 
 public interface TokenGenerator {
+    String KEY = "id";
     @NonNull
     String createToken(@NonNull final UUID uuid);
 
