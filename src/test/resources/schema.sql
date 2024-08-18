@@ -5,7 +5,7 @@ DROP TABLE IF EXISTS user_tokens;
 CREATE TABLE IF NOT EXISTS users
 (
     user_id    char(36)  not null,
-    email      varchar(15) unique,
+    email      varchar(1000) unique,
     password   varchar(60),
     created_at timestamp not null default now(),
     updated_at timestamp,
@@ -36,4 +36,16 @@ CREATE TABLE IF NOT EXISTS products
     deleted_at         timestamp,
     version            long      not null default 0,
     primary key (product_id)
+);
+
+CREATE TABLE IF NOT EXISTS wishlists
+(
+    wishlist_id char(36)  not null,
+    user_id     char(36)  not null,
+    product_id  char(36)  not null,
+    created_at  timestamp not null default now(),
+    updated_at  timestamp,
+    deleted_at  timestamp,
+    version     long      not null default 0,
+    primary key (wishlist_id)
 );

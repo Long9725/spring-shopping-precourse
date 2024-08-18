@@ -10,6 +10,7 @@ import shopping.domains.user.out.jpa.entity.JpaUser;
 import shopping.domains.user.out.jpa.repository.UserRepository;
 
 import java.util.Optional;
+import java.util.UUID;
 
 @Service
 @RequiredArgsConstructor
@@ -24,9 +25,12 @@ public class UserJpaService implements UserOutAdapter {
     }
 
     @Override
+    public @NonNull Optional<UserDto> findUser(@NonNull final UUID id) {
+        return userRepository.findById(id).map(JpaUser::toDto);
+    }
+
+    @Override
     public @NonNull Optional<UserDto> findUser(final String encryptedEmail) {
-        return userRepository.findByUser_Email_Value(encryptedEmail)
-                .flatMap(jpaUser -> Optional.of(jpaUser.toDto()))
-                .or(Optional::empty);
+        return userRepository.findByUser_Email_Value(encryptedEmail).map(JpaUser::toDto);
     }
 }

@@ -12,7 +12,7 @@ import java.util.stream.Stream;
 import static org.assertj.core.api.Assertions.assertThatNoException;
 import static org.assertj.core.api.Assertions.assertThatNullPointerException;
 import static shopping.domains.product.test.fixture.ProductTestFixture.PRODUCT;
-import static shopping.domains.user.test.fixture.UserTestFixture.*;
+import static shopping.domains.user.test.fixture.UserTestFixture.USER;
 
 class WishlistTest {
     @Test

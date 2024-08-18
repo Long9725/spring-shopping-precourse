@@ -6,11 +6,14 @@ import lombok.experimental.SuperBuilder;
 import shopping.domains.common.out.jpa.entity.BaseJpaEntity;
 import shopping.domains.product.core.domain.dto.ProductDto;
 import shopping.domains.product.core.domain.entity.Product;
+import shopping.domains.user.core.domain.entity.User;
 
+import java.util.Optional;
 import java.util.UUID;
 
 @Entity
 @Table(name = "products")
+@Getter
 @SuperBuilder(toBuilder = true)
 @NoArgsConstructor(access = AccessLevel.PROTECTED)
 @AllArgsConstructor
@@ -28,12 +31,19 @@ public class JpaProduct extends BaseJpaEntity {
             @AttributeOverride(name = "price.value", column = @Column(name = "price")),
             @AttributeOverride(name = "image.downloadUrl", column = @Column(name = "image_download_url"))
     })
+    @Getter(value = AccessLevel.NONE)
     private Product product;
 
     public JpaProduct(@NonNull final ProductDto dto) {
         super(dto);
 
+        this.id = dto.getId();
         this.product = dto.getDeletedAt() == null ? new Product(dto) : null;
+    }
+
+    @NonNull
+    public Optional<Product> getProduct() {
+        return Optional.ofNullable(product);
     }
 
     @NonNull
@@ -41,6 +51,7 @@ public class JpaProduct extends BaseJpaEntity {
         if (product == null) {
             return ProductDto.builder()
                     .id(id)
+                    .version(version)
                     .createdAt(createdAt)
                     .updatedAt(updatedAt)
                     .deletedAt(deletedAt)
@@ -49,6 +60,7 @@ public class JpaProduct extends BaseJpaEntity {
         return product.toDto()
                 .toBuilder()
                 .id(id)
+                .version(version)
                 .createdAt(createdAt)
                 .updatedAt(updatedAt)
                 .deletedAt(deletedAt)

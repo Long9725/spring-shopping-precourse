@@ -1,6 +1,5 @@
 package shopping.domains.product.out.api.purgoMalum.client;
 
-import feign.Response;
 import feign.codec.Decoder;
 import org.springframework.boot.autoconfigure.http.HttpMessageConverters;
 import org.springframework.cloud.openfeign.support.ResponseEntityDecoder;
@@ -10,10 +9,7 @@ import org.springframework.context.annotation.Configuration;
 import org.springframework.http.converter.HttpMessageConverter;
 import org.springframework.http.converter.StringHttpMessageConverter;
 
-import java.io.IOException;
-import java.lang.reflect.Type;
 import java.nio.charset.StandardCharsets;
-import java.util.List;
 
 @Configuration
 public class PurgoMalumConfig {

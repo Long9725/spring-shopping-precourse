@@ -10,18 +10,16 @@ import org.springframework.boot.test.context.SpringBootTest;
 import org.springframework.cloud.contract.wiremock.AutoConfigureWireMock;
 import org.springframework.test.context.TestPropertySource;
 import shopping.domains.common.core.domain.entity.ClientIllegalArgumentException;
-import shopping.domains.product.core.domain.command.CreateProductCommand;
+import shopping.domains.product.core.in.command.CreateProductCommand;
 import shopping.domains.product.core.domain.dto.ProductDto;
 import shopping.domains.product.out.jpa.entity.JpaProduct;
 import shopping.domains.product.out.jpa.repository.ProductRepository;
-import shopping.domains.product.out.jpa.service.ProductJpaService;
 
 import java.util.Optional;
 
 import static com.github.tomakehurst.wiremock.client.WireMock.*;
-import static com.github.tomakehurst.wiremock.client.WireMock.aResponse;
-import static org.assertj.core.api.Assertions.assertThatException;
 import static org.assertj.core.api.Assertions.assertThat;
+import static org.assertj.core.api.Assertions.assertThatException;
 
 @SpringBootTest(
         webEnvironment = SpringBootTest.WebEnvironment.RANDOM_PORT

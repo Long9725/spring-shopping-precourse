@@ -6,6 +6,7 @@ import org.springframework.security.crypto.encrypt.AesBytesEncryptor;
 
 import java.nio.ByteBuffer;
 import java.nio.charset.StandardCharsets;
+import java.util.Base64;
 
 public class TestEncryptUtil {
     private static final AesBytesEncryptor encryptor = new AesBytesEncryptor("test", "123123");
@@ -20,31 +21,13 @@ public class TestEncryptUtil {
     @NonNull
     public static final String encrypt(@NonNull final String origin) {
         final byte[] encrypt = encryptor.encrypt(origin.getBytes(StandardCharsets.UTF_8));
-        return byteArrayToString(encrypt);
+        return Base64.getEncoder().encodeToString(encrypt);
     }
 
     @NonNull
     public static final String decrypt(@NonNull final String encrypted) {
-        final byte[] decryptBytes = stringToByteArray(encrypted);
+        final byte[] decryptBytes = Base64.getDecoder().decode(encrypted);
         final byte[] decrypt = encryptor.decrypt(decryptBytes);
         return new String(decrypt, StandardCharsets.UTF_8);
-    }
-
-    private static String byteArrayToString(@NonNull final byte[] bytes) {
-        final StringBuilder sb = new StringBuilder();
-        for (byte abyte : bytes) {
-            sb.append(abyte);
-            sb.append(" ");
-        }
-        return sb.toString();
-    }
-
-    private static byte[] stringToByteArray(@NonNull final String byteString) {
-        final String[] split = byteString.split("\\s");
-        final ByteBuffer buffer = ByteBuffer.allocate(split.length);
-        for (final String s : split) {
-            buffer.put((byte) Integer.parseInt(s));
-        }
-        return buffer.array();
     }
 }

@@ -2,7 +2,6 @@ package shopping.domains.product.out.api.purgoMalum.service;
 
 import com.github.tomakehurst.wiremock.client.WireMock;
 import lombok.NonNull;
-import org.assertj.core.api.Condition;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.params.ParameterizedTest;
@@ -16,7 +15,6 @@ import org.springframework.test.context.TestPropertySource;
 import java.util.stream.Stream;
 
 import static com.github.tomakehurst.wiremock.client.WireMock.*;
-import static com.github.tomakehurst.wiremock.client.WireMock.aResponse;
 import static org.assertj.core.api.Assertions.assertThat;
 
 @SpringBootTest(

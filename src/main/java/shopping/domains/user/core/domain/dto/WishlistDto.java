@@ -5,6 +5,7 @@ import lombok.EqualsAndHashCode;
 import lombok.Getter;
 import lombok.ToString;
 import shopping.domains.common.core.domain.dto.BaseDto;
+import shopping.domains.product.core.domain.dto.ProductDto;
 
 import java.time.LocalDateTime;
 import java.util.UUID;
@@ -12,26 +13,26 @@ import java.util.UUID;
 @Getter
 @EqualsAndHashCode(callSuper = true)
 @ToString
-public class UserDto extends BaseDto {
+public class WishlistDto extends BaseDto {
     private final UUID id;
 
-    private final String encryptedEmail;
+    private final UserDto user;
 
-    private final String encryptedPassword;
+    private final ProductDto product;
 
     @Builder(toBuilder = true)
-    public UserDto(
+    public WishlistDto(
             final UUID id,
             final LocalDateTime createdAt,
             final LocalDateTime updatedAt,
             final LocalDateTime deletedAt,
             final Long version,
-            final String encryptedEmail,
-            final String encryptedPassword
+            final UserDto user,
+            final ProductDto product
     ) {
         super(createdAt, updatedAt, deletedAt, version);
         this.id = id;
-        this.encryptedEmail = encryptedEmail;
-        this.encryptedPassword = encryptedPassword;
+        this.user = user;
+        this.product = product;
     }
 }

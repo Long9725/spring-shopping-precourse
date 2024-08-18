@@ -1,11 +1,15 @@
 package shopping.domains.user.test.fixture;
 
+import shopping.domains.user.core.domain.dto.UserDto;
 import shopping.domains.user.core.domain.entity.EncryptedEmail;
 import shopping.domains.user.core.domain.entity.EncryptedPassword;
 import shopping.domains.user.core.domain.entity.User;
+import shopping.domains.user.out.jpa.entity.JpaUser;
 import shopping.domains.user.test.util.TestEncryptUtil;
 
+import java.time.LocalDateTime;
 import java.util.List;
+import java.util.UUID;
 
 import static shopping.domains.user.core.domain.entity.RawPassword.MAX_RAW_PASSWORD_LENGTH;
 import static shopping.domains.user.core.domain.entity.RawPassword.MIN_RAW_PASSWORD_LENGTH;
@@ -49,12 +53,25 @@ public class UserTestFixture {
 
     public static final User USER;
 
+    public static final UserDto USER_DTO;
+
+    public static final JpaUser JPA_USER;
+
     static {
         final String encryptedEmail = TestEncryptUtil.encrypt("Test@example.com");
         final String encryptedPassword = TestEncryptUtil.hash("Test@123");
+
         USER = User.builder()
                 .email(new EncryptedEmail(encryptedEmail))
                 .password(new EncryptedPassword(encryptedPassword))
                 .build();
+        USER_DTO = USER.toDto()
+                .toBuilder()
+                .id(UUID.randomUUID())
+                .createdAt(LocalDateTime.now())
+                .updatedAt(LocalDateTime.now())
+                .version(0L)
+                .build();
+        JPA_USER = new JpaUser(USER_DTO);
     }
 }

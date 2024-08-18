@@ -1,11 +1,15 @@
 package shopping.domains.product.test.fixture;
 
+import shopping.domains.product.core.domain.dto.ProductDto;
 import shopping.domains.product.core.domain.entity.Image;
 import shopping.domains.product.core.domain.entity.Name;
 import shopping.domains.product.core.domain.entity.Price;
 import shopping.domains.product.core.domain.entity.Product;
+import shopping.domains.product.out.jpa.entity.JpaProduct;
 
+import java.time.LocalDateTime;
 import java.util.List;
+import java.util.UUID;
 
 public class ProductTestFixture {
     public static final List<String> NAMES = List.of(
@@ -62,4 +66,14 @@ public class ProductTestFixture {
             .price(new Price(0L))
             .image(new Image("https://example.com/image.jpg"))
             .build();
+
+    public static final ProductDto PRODUCT_DTO = PRODUCT.toDto()
+            .toBuilder()
+            .id(UUID.randomUUID())
+            .createdAt(LocalDateTime.now())
+            .updatedAt(LocalDateTime.now())
+            .version(0L)
+            .build();
+
+    public static final JpaProduct JPA_PRODUCT = new JpaProduct(PRODUCT_DTO);
 }

@@ -7,7 +7,6 @@ import org.junit.jupiter.params.ParameterizedTest;
 import org.junit.jupiter.params.provider.Arguments;
 import org.junit.jupiter.params.provider.MethodSource;
 import shopping.domains.user.core.domain.dto.UserDto;
-import shopping.domains.user.core.domain.entity.*;
 import shopping.domains.user.test.util.TestEncryptUtil;
 
 import java.util.stream.Stream;

@@ -12,6 +12,7 @@ import java.util.UUID;
 
 @Entity
 @Table(name = "users")
+@Getter
 @SuperBuilder(toBuilder = true)
 @NoArgsConstructor(access = AccessLevel.PROTECTED)
 @AllArgsConstructor
@@ -28,12 +29,19 @@ public class JpaUser extends BaseJpaEntity {
             @AttributeOverride(name = "email.value", column = @Column(name = "email")),
             @AttributeOverride(name = "password.value", column = @Column(name = "password"))
     })
+    @Getter(value = AccessLevel.NONE)
     private User user;
 
     public JpaUser(@NonNull final UserDto dto) {
         super(dto);
 
+        this.id = dto.getId();
         this.user = dto.getDeletedAt() == null ? new User(dto) : null;
+    }
+
+    @NonNull
+    public Optional<User> getUser() {
+        return Optional.ofNullable(user);
     }
 
     @NonNull
@@ -41,6 +49,7 @@ public class JpaUser extends BaseJpaEntity {
         if (user == null) {
             return UserDto.builder()
                     .id(id)
+                    .version(version)
                     .createdAt(createdAt)
                     .updatedAt(updatedAt)
                     .deletedAt(deletedAt)
@@ -49,6 +58,7 @@ public class JpaUser extends BaseJpaEntity {
         return user.toDto()
                 .toBuilder()
                 .id(id)
+                .version(version)
                 .createdAt(createdAt)
                 .updatedAt(updatedAt)
                 .deletedAt(deletedAt)

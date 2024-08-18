@@ -1,4 +1,4 @@
-package shopping.domains.product.core.domain.command;
+package shopping.domains.product.core.in.command;
 
 import lombok.Builder;
 import lombok.NonNull;

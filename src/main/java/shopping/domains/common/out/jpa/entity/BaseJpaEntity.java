@@ -1,6 +1,9 @@
 package shopping.domains.common.out.jpa.entity;
 
-import jakarta.persistence.*;
+import jakarta.persistence.Column;
+import jakarta.persistence.EntityListeners;
+import jakarta.persistence.MappedSuperclass;
+import jakarta.persistence.Version;
 import lombok.*;
 import lombok.experimental.SuperBuilder;
 import org.springframework.data.annotation.CreatedDate;
@@ -10,8 +13,8 @@ import shopping.domains.common.core.domain.dto.BaseDto;
 
 import java.time.LocalDateTime;
 import java.util.Objects;
-import java.util.UUID;
 
+@Getter
 @MappedSuperclass
 @EntityListeners(AuditingEntityListener.class)
 @SuperBuilder(toBuilder = true)
@@ -26,11 +29,13 @@ public abstract class BaseJpaEntity {
     @LastModifiedDate
     protected LocalDateTime updatedAt;
 
+    @Getter(value = AccessLevel.NONE)
     /**
      * soft delete 용 입니다.
      */
     protected LocalDateTime deletedAt;
 
+    @Getter(value = AccessLevel.NONE)
     @Version
     @Column(nullable = false)
     protected Long version;
@@ -62,5 +67,9 @@ public abstract class BaseJpaEntity {
                 dto.getDeletedAt(),
                 dto.getVersion()
         );
+    }
+
+    public boolean isDeleted() {
+        return deletedAt != null;
     }
 }

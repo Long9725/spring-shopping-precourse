@@ -11,9 +11,6 @@ import org.springframework.boot.test.autoconfigure.orm.jpa.TestEntityManager;
 import org.springframework.context.annotation.Import;
 import shopping.domains.product.core.domain.dto.ProductDto;
 import shopping.domains.product.out.jpa.repository.ProductRepository;
-import shopping.domains.user.core.domain.dto.TokenDto;
-import shopping.domains.user.out.jpa.repository.TokenRepository;
-import shopping.domains.user.out.jpa.service.TokenJpaService;
 
 import java.time.LocalDateTime;
 import java.util.UUID;

@@ -1,10 +1,10 @@
 package shopping.domains.common.core.domain.dto;
 
-import lombok.*;
-import lombok.experimental.SuperBuilder;
+import lombok.EqualsAndHashCode;
+import lombok.Getter;
+import lombok.ToString;
 
 import java.time.LocalDateTime;
-import java.util.UUID;
 
 @Getter
 @EqualsAndHashCode
@@ -28,5 +28,9 @@ public abstract class BaseDto {
         this.updatedAt = updatedAt;
         this.deletedAt = deletedAt;
         this.version = version;
+    }
+
+    public boolean isDeleted() {
+        return deletedAt != null;
     }
 }

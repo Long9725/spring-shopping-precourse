@@ -2,7 +2,6 @@ package shopping.domains.user.core.domain.entity;
 
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
-import shopping.domains.user.core.domain.entity.AuthToken;
 
 import static org.assertj.core.api.Assertions.*;
 

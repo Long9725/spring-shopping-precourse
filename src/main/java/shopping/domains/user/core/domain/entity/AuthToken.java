@@ -3,7 +3,6 @@ package shopping.domains.user.core.domain.entity;
 import jakarta.persistence.Embeddable;
 import lombok.*;
 import shopping.domains.user.core.domain.dto.TokenDto;
-import shopping.domains.user.core.domain.dto.UserDto;
 
 @Embeddable
 @NoArgsConstructor(access = AccessLevel.PROTECTED)

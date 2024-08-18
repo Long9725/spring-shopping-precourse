@@ -34,6 +34,7 @@ public class JpaAuthToken extends BaseJpaEntity {
         if (authToken == null) {
             return TokenDto.builder()
                     .userId(userId)
+                    .version(version)
                     .createdAt(createdAt)
                     .updatedAt(updatedAt)
                     .deletedAt(deletedAt)
@@ -42,6 +43,7 @@ public class JpaAuthToken extends BaseJpaEntity {
         return authToken.toDto()
                 .toBuilder()
                 .userId(userId)
+                .version(version)
                 .createdAt(createdAt)
                 .updatedAt(updatedAt)
                 .deletedAt(deletedAt)
