@@ -1,8 +1,8 @@
-package shopping.apps.shopping.api.request;
+package shopping.apps.shopping.api.user.request;
 
 import io.swagger.v3.oas.annotations.media.Schema;
 import jakarta.validation.constraints.Pattern;
-import shopping.apps.shopping.api.docs.UserApiDocs;
+import shopping.apps.shopping.api.user.docs.UserApiDocs;
 import shopping.domains.user.core.domain.entity.RawEmail;
 import shopping.domains.user.core.domain.entity.RawPassword;
 import shopping.domains.user.core.in.command.SignUpCommand;

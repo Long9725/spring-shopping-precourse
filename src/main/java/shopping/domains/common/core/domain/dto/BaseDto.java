@@ -2,6 +2,7 @@ package shopping.domains.common.core.domain.dto;
 
 import lombok.EqualsAndHashCode;
 import lombok.Getter;
+import lombok.NonNull;
 import lombok.ToString;
 
 import java.time.LocalDateTime;

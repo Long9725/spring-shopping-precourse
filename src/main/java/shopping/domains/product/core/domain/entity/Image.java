@@ -11,7 +11,8 @@ import java.util.regex.Pattern;
 @EqualsAndHashCode
 @ToString
 public class Image {
-    public static final Pattern PATTERN = Pattern.compile("^(http|https):\\/\\/[^\\s]+\\/.*\\.(jpg|jpeg|png|gif|bmp|svg)$");
+    public static final String REG_EXP = "^(http|https):\\/\\/[^\\s]+\\/.*\\.(jpg|jpeg|png|gif|bmp|svg)$";
+    public static final Pattern PATTERN = Pattern.compile(REG_EXP);
 
     private String downloadUrl;
 

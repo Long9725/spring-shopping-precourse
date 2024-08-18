@@ -15,9 +15,12 @@ public class Name {
 
     public static final int MAX_NAME_LENGTH = 15;
 
-    public static final Pattern PATTERN = Pattern.compile("^[\\p{L}\\p{N}\\s\\(\\)\\[\\]\\+\\-\\&\\/_]{"
+    public static final String REG_EXP = "^[\\p{L}\\p{N}\\s\\(\\)\\[\\]\\+\\-\\&\\/_]{"
             + MIN_NAME_LENGTH + ","
-            + MAX_NAME_LENGTH + "}$");
+            + MAX_NAME_LENGTH + "}$";
+
+    public static final Pattern PATTERN = Pattern.compile(REG_EXP);
+
     private String value;
 
     public Name(@NonNull final String value) {

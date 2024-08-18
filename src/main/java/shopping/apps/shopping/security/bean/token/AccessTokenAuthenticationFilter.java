@@ -11,7 +11,7 @@ import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.security.web.authentication.WebAuthenticationDetailsSource;
 import org.springframework.util.AntPathMatcher;
 import org.springframework.web.filter.OncePerRequestFilter;
-import shopping.apps.shopping.api.constant.ApiUrls;
+import shopping.apps.shopping.api.common.ApiUrls;
 import shopping.domains.common.core.domain.entity.UnauthorizedException;
 import shopping.domains.common.core.domain.enums.CommonErrorCode;
 import shopping.domains.user.core.domain.entity.TokenGenerator;
@@ -49,9 +49,15 @@ public class AccessTokenAuthenticationFilter extends OncePerRequestFilter {
             @NonNull final FilterChain filterChain
     )
             throws ServletException, IOException {
-        final String requestURI = request.getRequestURI().substring(ApiUrls.API_PREFIX.length());
+        final String requestURI = request.getRequestURI();
 
-        if (accessTokenWhitelist.noneMatch(requestURI, pathMatcher::match)) {
+        if (!requestURI.startsWith(ApiUrls.API_PREFIX)) {
+            throw new IllegalArgumentException("Invalid API prefix in request URI: " + requestURI);
+        }
+
+        final String trimmedRequestURI = requestURI.substring(ApiUrls.API_PREFIX.length());
+
+        if (accessTokenWhitelist.noneMatch(trimmedRequestURI, pathMatcher::match)) {
             setDetails(request, getTokenFromRequest(request));
         }
 

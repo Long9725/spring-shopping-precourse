@@ -48,9 +48,9 @@ public class ProductService implements ProductInAdapter {
                 .price(command.price())
                 .imageUrl(command.imageUrl())
                 .build();
-        final Product updateProduct = new Product(productDto);
+        final ProductDto updateProductDto = new Product(productDto).toDto().updateBase(productDto);
 
-        return productOutAdapter.save(updateProduct.toDto());
+        return productOutAdapter.save(updateProductDto);
     }
 
     private Name getCleanName(@NonNull final String name) {

@@ -8,6 +8,7 @@ import shopping.domains.user.core.domain.entity.AuthToken;
 
 import java.util.UUID;
 
+@Getter
 @Entity
 @Table(name = "user_tokens")
 @NoArgsConstructor(access = AccessLevel.PROTECTED)
@@ -18,9 +19,10 @@ public class JpaAuthToken extends BaseJpaEntity {
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
     @Column(name = "user_id")
-    private UUID userId;
+    private UUID id;
 
     @Embedded
+    @Getter(value = AccessLevel.NONE)
     private AuthToken authToken;
 
     public JpaAuthToken(@NonNull final TokenDto dto) {
@@ -33,7 +35,7 @@ public class JpaAuthToken extends BaseJpaEntity {
     public TokenDto toDto() {
         if (authToken == null) {
             return TokenDto.builder()
-                    .userId(userId)
+                    .userId(id)
                     .version(version)
                     .createdAt(createdAt)
                     .updatedAt(updatedAt)
@@ -42,7 +44,7 @@ public class JpaAuthToken extends BaseJpaEntity {
         }
         return authToken.toDto()
                 .toBuilder()
-                .userId(userId)
+                .userId(id)
                 .version(version)
                 .createdAt(createdAt)
                 .updatedAt(updatedAt)

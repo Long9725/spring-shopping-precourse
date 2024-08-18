@@ -1,18 +1,17 @@
 package shopping.domains.common.out.jpa.entity;
 
-import jakarta.persistence.Column;
-import jakarta.persistence.EntityListeners;
-import jakarta.persistence.MappedSuperclass;
-import jakarta.persistence.Version;
+import jakarta.persistence.*;
 import lombok.*;
 import lombok.experimental.SuperBuilder;
 import org.springframework.data.annotation.CreatedDate;
 import org.springframework.data.annotation.LastModifiedDate;
+import org.springframework.data.domain.Persistable;
 import org.springframework.data.jpa.domain.support.AuditingEntityListener;
 import shopping.domains.common.core.domain.dto.BaseDto;
 
 import java.time.LocalDateTime;
 import java.util.Objects;
+import java.util.UUID;
 
 @Getter
 @MappedSuperclass
@@ -21,7 +20,7 @@ import java.util.Objects;
 @NoArgsConstructor(access = AccessLevel.PROTECTED)
 @EqualsAndHashCode
 @ToString
-public abstract class BaseJpaEntity {
+public abstract class BaseJpaEntity implements Persistable<UUID> {
     @CreatedDate
     @Column(updatable = false)
     protected LocalDateTime createdAt;
@@ -72,4 +71,12 @@ public abstract class BaseJpaEntity {
     public boolean isDeleted() {
         return deletedAt != null;
     }
+
+    @Override
+    @Transient
+    public boolean isNew() {
+        return getId() == null;
+    }
+
+    public abstract UUID getId();
 }

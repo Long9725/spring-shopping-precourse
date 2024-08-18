@@ -1,10 +1,8 @@
 package shopping.domains.product.core.domain.dto;
 
-import lombok.Builder;
-import lombok.EqualsAndHashCode;
-import lombok.Getter;
-import lombok.ToString;
+import lombok.*;
 import shopping.domains.common.core.domain.dto.BaseDto;
+import shopping.domains.product.core.domain.entity.Product;
 
 import java.time.LocalDateTime;
 import java.util.UUID;
@@ -37,5 +35,15 @@ public class ProductDto extends BaseDto {
         this.name = name;
         this.price = price;
         this.imageUrl = imageUrl;
+    }
+
+    @NonNull
+    public ProductDto updateBase(@NonNull final ProductDto other) {
+        return toBuilder()
+                .id(other.id)
+                .createdAt(other.createdAt)
+                .updatedAt(other.updatedAt)
+                .deletedAt(other.deletedAt)
+                .build();
     }
 }

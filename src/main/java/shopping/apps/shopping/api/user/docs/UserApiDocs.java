@@ -1,4 +1,4 @@
-package shopping.apps.shopping.api.docs;
+package shopping.apps.shopping.api.user.docs;
 
 import io.swagger.v3.oas.annotations.media.Schema;
 import jakarta.validation.constraints.Pattern;

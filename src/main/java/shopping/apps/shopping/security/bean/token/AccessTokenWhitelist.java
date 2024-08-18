@@ -2,10 +2,9 @@ package shopping.apps.shopping.security.bean.token;
 
 import lombok.NonNull;
 
-import java.util.ArrayList;
 import java.util.List;
 
-import static shopping.apps.shopping.api.constant.ApiUrls.*;
+import static shopping.apps.shopping.api.common.ApiUrls.*;
 
 public class AccessTokenWhitelist {
     private final List<String> whitelists;
@@ -13,11 +12,11 @@ public class AccessTokenWhitelist {
 
     private AccessTokenWhitelist() {
         this.whitelists = List.of(
-                SWAGGER_API_DOCS,
-                SWAGGER_UI,
-                SWAGGER_RESOURCES,
-                USER_PREFIX + USER_LOGIN,
-                USER_PREFIX + USER_REGISTER
+                ApiDocs.API_DOCS,
+                ApiDocs.UI,
+                ApiDocs.RESOURCES,
+                User.PREFIX + User.LOGIN,
+                User.PREFIX  + User.REGISTER
         );
     }
 
@@ -38,9 +37,6 @@ public class AccessTokenWhitelist {
             @NonNull final String value,
             @NonNull final MatchStrategy matchStrategy
     ) {
-        if(notContains(value)) {
-            return false;
-        }
         return whitelists.stream().anyMatch(whitelist -> matchStrategy.match(whitelist, value));
     }
 
