@@ -29,20 +29,28 @@ public class ApiUrls {
     public static final class Product {
         public static final String PREFIX = "/products";
 
-        public static final String GET_INFO = "/{productId}";
-
         public static final String GET_ALL_INFO = "";
 
         public static final String CREATE = "";
+
+        public static final class GetInfo {
+            public static final String FULL_URI = "/{productId}";
+
+            public static final String PRODUCT_ID_PATH_VAR = "productId";
+        }
+
 
         public static final class Update {
             public static final String FULL_URI = "/{productId}";
 
             public static final String PRODUCT_ID_PATH_VAR = "productId";
         }
-        public static final String UPDATE = "/{productId}";
 
-        public static final String DELETE = "/{productId}";
+        public static final class Delete {
+            public static final String FULL_URI = "/{productId}";
+
+            public static final String PRODUCT_ID_PATH_VAR = "productId";
+        }
     }
 
     public static final class Wishlist {
@@ -50,9 +58,14 @@ public class ApiUrls {
 
         public static final String CREATE = "";
 
-        public static final String DELETE = "/{wishId}";
-
         public static final String GET_ALL_INFO = "";
+
+
+        public static final class Delete {
+            public static final String FULL_URI = "/{wishId}";
+
+            public static final String WISHLIST_ID_PATH_VAR = "wishId";
+        }
     }
 
 

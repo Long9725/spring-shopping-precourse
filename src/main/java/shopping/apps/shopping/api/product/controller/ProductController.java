@@ -37,7 +37,7 @@ public class ProductController {
     }
 
     @Operation(summary = ProductApiDocs.Update.SUMMARY, description = ProductApiDocs.Update.DESCRIPTION)
-    @PutMapping(ApiUrls.Product.UPDATE)
+    @PutMapping(ApiUrls.Product.Update.FULL_URI)
     public ResponseEntity<ProductInfoResponse> updateProduct(
             @PathVariable(ApiUrls.Product.Update.PRODUCT_ID_PATH_VAR) @NonNull final UUID productId,
             @Valid
@@ -48,18 +48,18 @@ public class ProductController {
     }
 
     @Operation(summary = ProductApiDocs.Delete.SUMMARY, description = ProductApiDocs.Delete.DESCRIPTION)
-    @DeleteMapping(ApiUrls.Product.DELETE)
+    @DeleteMapping(ApiUrls.Product.Delete.FULL_URI)
     public ResponseEntity<Void> deleteProduct(
-            @PathVariable(ApiUrls.Product.Update.PRODUCT_ID_PATH_VAR) @NonNull final UUID productId
+            @PathVariable(ApiUrls.Product.Delete.PRODUCT_ID_PATH_VAR) @NonNull final UUID productId
     ) {
         productInAdapter.deleteProduct(productId);
         return ResponseEntity.status(HttpStatus.OK).build();
     }
 
     @Operation(summary = ProductApiDocs.GetInfo.SUMMARY, description = ProductApiDocs.GetInfo.DESCRIPTION)
-    @GetMapping(ApiUrls.Product.GET_INFO)
+    @GetMapping(ApiUrls.Product.GetInfo.FULL_URI)
     public ResponseEntity<ProductInfoResponse> getProductInfo(
-            @PathVariable(ApiUrls.Product.Update.PRODUCT_ID_PATH_VAR) @NonNull final UUID productId
+            @PathVariable(ApiUrls.Product.GetInfo.PRODUCT_ID_PATH_VAR) @NonNull final UUID productId
     ) {
         final ProductDto productDto = productInAdapter.getProduct(productId);
         return ResponseEntity.status(HttpStatus.OK).body(new ProductInfoResponse(productDto));

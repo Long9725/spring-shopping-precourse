@@ -1,5 +1,7 @@
 package shopping.domains.user.core.in.command;
 
+import lombok.Builder;
+
 import java.util.UUID;
 
 public record CreateWishlistCommand (
@@ -7,4 +9,8 @@ public record CreateWishlistCommand (
 
         UUID productId
 ) {
+    @Builder
+    public CreateWishlistCommand {
+
+    }
 }
